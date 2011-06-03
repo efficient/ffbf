@@ -1,5 +1,6 @@
-==================
-This is the implementation of a feed-forward Bloom filter.
+This is the implementation of a feed-forward Bloom filter.  It provides
+extremely fast fixed-pattern matching for up to millions of patterns
+(similar to the functionality of 'fgrep').
 
 AUTHORS: Iulian Moraru and David Andersen
         School of Computer Science,
