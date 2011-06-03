@@ -1,0 +1,46 @@
+Copyright 2011 Iulian Moraru and David G. Andersen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+==================
+
+This is the implementation of a feed-forward Bloom filter.
+
+AUTHORS: Iulian Moraru and David Andersen
+        School of Computer Science,
+        Carnegie Mellon University
+
+For details about the algorithm and citations please use the article
+"Exact Pattern Matching with Feed-Forward Bloom filters" by Iulian Moraru and David G. Andersen
+URL: http://www.siam.org/proceedings/alenex/2011/alx11_01_morarui.pdf
+
+We have used an older version of the algorithm for malware scanning. Details in:
+"SplitScreen: Enabling Efficient, Distributed Malware Detection"
+URL: http://www.usenix.org/events/nsdi10/tech/full_papers/cha.pdf
+
+==================
+
+Repository structure:
+
+/src/rabin-karp
+
+    The implementation of a feed-forward Bloom filter for the x86 architecture.
+
+/src/gpgpu
+
+    The implementation of a feed-forward Bloom filter for CUDA.
+
+/src/hashes
+
+    A compilation of hash functions that we've tested for the feed-forward Bloom filter.
+

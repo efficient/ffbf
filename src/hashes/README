@@ -1,0 +1,14 @@
+A skeleton for benching rolling hash functions.
+
+Still incomplete.  But getting there.
+
+Requires a file called "infile" for now.  That'll get fixed later.
+
+
+The individual hash functions get compiled against the hashbench base program and turn into binaries named hash_{x}, one per hash function.
+
+distcomp.rb is a "how good is this hash function" evaluator.
+
+timecomp.rb benchmarks the runtime of each hash function against the
+input file.
+

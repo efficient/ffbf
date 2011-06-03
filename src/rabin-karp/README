@@ -1,0 +1,54 @@
+Copyright 2011 Iulian Moraru and David G. Andersen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+==================
+
+This is the implementation of a feed-forward Bloom filter.
+The code has been tested on a Linux 2.6.35 machine, gcc version 4.4.5.
+
+AUTHORS: Iulian Moraru and David Andersen
+        School of Computer Science,
+        Carnegie Mellon University
+
+
+CONFIGURING AND BUILDING
+
+Before making, review the filter parameters in the Makefile:
+
+    - the size of the non-cache-resident part of the filter,
+    - the size of the cache-resident part of the filter,
+    - the total number of hashes,
+    - the number of hashes that only hash in the cache-resident part of the filter,
+    - the path to a file on a hugetlbfs file system.
+    - the minimum pattern length -- ideally it should be larger than 10 characters for effective filtering
+
+
+RUNNING
+
+For using super pages (huge pages in Linux):
+
+    echo 100 > /proc/sys/vm/nr_hugepages
+    mount -t hugetlbfs nodev <huge_pages_mount_directory>
+
+NOTE: the HUGEPAGE_FILE variable in the Makefile must be defined as:
+    HUGEPAGE_FILE = '"<huge_pages_mount_directory>/<filename>"'
+
+Running the filter, and then grep:
+
+    ffbf patterns_file filtered_patterns.out < corpus > filtered_corpus.out
+    grep -Ff filtered_patterns.out filtered_corpus.out
+
+NOTE: The Bloom filter is only built in the first run, and saved in a file named "__bloom_filter_<patterns_file>",
+    in the current folder. Subsequent runs will load the Bloom filter from the file.
+    If the patterns_file is modified, the bloom filter file must be deleted.
