@@ -1,5 +1,7 @@
 /**
-Copyright 2011 Iulian Moraru and David G. Andersen
+Copyright 2011 Carnegie Mellon University
+
+Authors: Iulian Moraru and David G. Andersen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
