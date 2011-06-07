@@ -1,8 +1,5 @@
-CXX = g++
-CXXFLAGS = -Wall -g -O3 -march=core2
-
 # Feed-forward Bloom filter parameters:
-
+#
 # The size of the non-cache-resident portion of the filter, in bits
 # (must be a power of 2) -- the default value is 32 MB
 EXT_SIZE = 0x10000000
@@ -23,18 +20,14 @@ HUGEPAGE_FILE = '"./mnt/hugepagefile"'
 # The minimum length of the patterns.
 PATTERN_LEN = 19
 
-# Hash function folder
-HASHES = ../hashes
 
-
-all: ffbf
-
-ffbf: ffbf.cpp ffbf.h $(HASHES)/hash_rot_sbox_pre_2.h $(HASHES)/hash_common.h $(HASHES)/hash_buf.h
-	$(CXX) $< $(CXXFLAGS) -o $@ -DDEF_EXT_SIZE=$(EXT_SIZE) -DDEF_CACHE_SIZE=$(CACHED_SIZE)\
-		-DDEF_K=$(TOTAL_HASHES) -DDEF_S=$(CACHE_HASHES) -DHUGEPAGE_FILE_NAME=$(HUGEPAGE_FILE)\
-		-DDEF_PATT_LEN=$(PATTERN_LEN)
-
-.PHONY: clean
-
-clean:
-	rm -f *~ *.o ffbf
+noinst_PROGRAMS = ffbf
+ffbf_SOURCES = ffbf.cpp
+ffbf_CPPFLAGS = -Wall -g -O3 -march=core2 -I$(top_srcdir)/src/hashes \
+				-DDEF_EXT_SIZE=$(EXT_SIZE)\
+			   	-DDEF_CACHE_SIZE=$(CACHED_SIZE)\
+				-DDEF_K=$(TOTAL_HASHES)\
+			   	-DDEF_S=$(CACHE_HASHES)\
+			   	-DHUGEPAGE_FILE_NAME=$(HUGEPAGE_FILE)\
+				-DDEF_PATT_LEN=$(PATTERN_LEN)
+MAINTAINERCLEANFILES = Makefile.in
